@@ -25,8 +25,6 @@ spec:
       hostNetwork: true
       hostPID: true
       terminationGracePeriodSeconds: 30
-      imagePullSecrets:
-      - name: qif-gitlab
       containers:
       - name: zabbix-agent
         image: rossipan/kube-zabbix-exporter
