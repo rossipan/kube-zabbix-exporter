@@ -25,11 +25,9 @@ spec:
       hostNetwork: true
       hostPID: true
       terminationGracePeriodSeconds: 30
-      imagePullSecrets:
-      - name: qif-gitlab
       containers:
       - name: zabbix-agent
-        image: rossipan/docker-zabbix-coreos/3.0.17
+        image: rossipan/kube-zabbix-exporter
         env:
         - name: ZBX_SERVER_HOST
           value: {{ ZBX_SERVER_HOST }}
