@@ -1,5 +1,6 @@
 kube-zabbix-exporter
 ===
+Monitoring kubernetes cluster with zabbix
 
 kube-zabbix-exporter based on [prometheus/client_python](https://github.com/prometheus/client_python) and [shamil/zabbix-etcd](https://github.com/shamil/zabbix-etcd), copy from [bhuisgen/docker-zabbix-coreos](https://github.com/bhuisgen/docker-zabbix-coreos)
 
