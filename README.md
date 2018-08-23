@@ -80,7 +80,7 @@ $ kubectl apply -f zabbix-agent-daemonset.yaml
 
 ### etcd
 
-| Metrics name | Description |
+| Zabbix Item Name | Zabbix Item Key |
 | ------------ | ----------- |
 | **etcd node: health**| healthz|
 | **etcd node: receive requests**| v2/stats/self:recvAppendRequestCnt |
@@ -107,3 +107,45 @@ $ kubectl apply -f zabbix-agent-daemonset.yaml
 | **etcd follower: {#MEMBER NAME} successful raft requests**| v2/stats/leader:followers/{#MEMBER ID}/counts/success |
 | **etcd follower: {#MEMBER NAME} latency to leader**| v2/stats/leader:followers/{#MEMBER ID}/latency/current | 
 
+
+### Kubernetes apiserver/controller/scheduler
+
+| Zabbix Item Name | Zabbix Item Key |
+| ------------ | ----------- |
+| **apiserver_request_count: error_rate (verb=DELETE)**| apiserver_request_error_rate[DELETE]|
+| **apiserver_request_count: error_rate (verb=GET)**| apiserver_request_error_rate[GET]|
+| **apiserver_request_count: error_rate (verb=LIST)**| apiserver_request_error_rate[LIST]|
+| **apiserver_request_count: error_rate (verb=PATCH)**| apiserver_request_error_rate[PATCH]|
+| **apiserver_request_count: error_rate (verb=POST)**| apiserver_request_error_rate[POST]|
+| **apiserver_request_count: error_rate (verb=PUT)**| apiserver_request_error_rate[PUT]|
+| **apiserver_request_count: verb=DELETE, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]|
+| **apiserver_request_count: verb=DELETE, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]|
+| **apiserver_request_count: verb=GET, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]|
+| **apiserver_request_count: verb=GET, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]|
+| **apiserver_request_count: verb=LIST, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]|
+| **apiserver_request_count: verb=POST, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]|
+| **apiserver_request_count: verb=PATCH, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]|
+| **apiserver_request_count: verb=PATCH, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]|
+| **apiserver_request_count: verb=POST, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]|
+| **apiserver_request_count: verb=POST, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]|
+| **apiserver_request_count: verb=PUT, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]|
+| **apiserver_request_count: verb=PUT, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]|
+| **apiserver_request_latencies: DELETE**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]|
+| **apiserver_request_latencies: GET**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]|
+| **apiserver_request_latencies: LIST**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]|
+| **apiserver_request_latencies: PATCH**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]|
+| **apiserver_request_latencies: POST**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]|
+| **apiserver_request_latencies: PUT**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]|
+| **apiserver_request_latencies: POST**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]|
+| **apiserver: healthz**| metrics_exporter[https://{HOST.IP}:443/healthz,healthz]|
+| **kube-scheduler: healthz**| metrics_exporter[http://{HOST.IP}:10251/healthz,healthz]|
+| **kube-scheduler: current leader**| metrics_exporter[https://{HOST.IP}:443,get_leader,kube-scheduler]|
+| **kube-controller-manager: healthz**| metrics_exporter[http://{HOST.IP}:10252/healthz,healthz]|
+| **kube-controller-manager: current leader**| metrics_exporter[https://{HOST.IP}:443,get_leader,kube-controller-manager]|
+
+
+### Kubelet
+| Zabbix Item Name | Zabbix Item Key |
+| ------------ | ----------- |
+| **kubelet: healthz**| metrics_exporter[https://{HOST.IP}:10250/healthz,healthz]|
+| **UBELET_RUNNING_POD_COUNT**| metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]|
