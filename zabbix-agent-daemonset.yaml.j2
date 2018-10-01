@@ -23,6 +23,7 @@ spec:
         operator: "Exists"
         effect: "NoExecute"
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       hostPID: true
       terminationGracePeriodSeconds: 30
       containers:
