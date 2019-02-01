@@ -61,7 +61,7 @@ def connect(router, timeout=60):
             requests.packages.urllib3.disable_warnings()
             raw = requests.get(router, headers={"Authorization": token}, verify=False).content
 
-        except requests.exceptions.HTTPError as e:
+        except requests.exceptions.RequestException as e:
             return "Error: " + str(e)
 
         try:
