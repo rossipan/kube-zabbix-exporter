@@ -149,4 +149,4 @@ $ kubectl apply -f zabbix-agent-daemonset.yaml
 | Zabbix Item Name | Zabbix Item Key |
 | ------------ | ----------- |
 | **kubelet: healthz**| metrics_exporter[https://{HOST.IP}:10250/healthz,healthz]|
-| **UBELET_RUNNING_POD_COUNT**| metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]|
+| **KUBELET_RUNNING_POD_COUNT**| metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]|
