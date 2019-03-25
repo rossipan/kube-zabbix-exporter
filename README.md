@@ -83,30 +83,45 @@ $ kubectl apply -f zabbix-agent-daemonset.yaml
 
 | Zabbix Item Name | Zabbix Item Key |
 | ------------ | ----------- |
-| **etcd node: health**| healthz|
-| **etcd node: receive requests**| v2/stats/self:recvAppendRequestCnt |
-| **etcd node: send requests**| v2/stats/self:sendAppendRequestCnt |
-| **etcd node: state**| v2/stats/self:state |
-| **etcd node: expires**| v2/stats/store:expireCount |
-| **etcd node: gets fail**| v2/stats/store:getsFail |
-| **etcd node: gets success**| v2/stats/store:getsSuccess |
-| **etcd node: watchers**| v2/stats/store:watchers |
-| **etcd cluster: sets fail**| v2/stats/store:setsFail |
-| **etcd cluster: sets success**| v2/stats/store:setsSuccess |
-| **etcd cluster: update fail**| v2/stats/store:updateFail |
-| **etcd cluster: update success**| v2/stats/store:updateSuccess |
-| **etcd cluster: compare and delete fail**| v2/stats/store:compareAndDeleteFail |
-| **etcd cluster: compare and delete success**| v2/stats/store:compareAndDeleteSuccess |
-| **etcd cluster: compare and swap fail**| v2/stats/store:compareAndSwapFail |
-| **etcd cluster: compare and swap success**| v2/stats/store:compareAndSwapSuccess |
-| **etcd cluster: create fail**| v2/stats/store:createFail |
-| **etcd cluster: create success**| v2/stats/store:createSuccess |
-| **etcd cluster: delete fail**| v2/stats/store:deleteFail |
-| **etcd cluster: delete success**| v2/stats/store:deleteSuccess |
-| **ETCD MEMBERS**| v2/members |
-| **etcd follower: {#MEMBER NAME} failed raft requests**| v2/stats/leader:followers/{#MEMBER ID}/counts/fail |
-| **etcd follower: {#MEMBER NAME} successful raft requests**| v2/stats/leader:followers/{#MEMBER ID}/counts/success |
-| **etcd follower: {#MEMBER NAME} latency to leader**| v2/stats/leader:followers/{#MEMBER ID}/latency/current | 
+| **etcd node: health**| etcd.stats["health:health"]|
+| **etcd node: receive requests**| etcd.stats["v2/stats/self:recvAppendRequestCnt"] |
+| **etcd node: send requests**| etcd.stats["v2/stats/self:sendAppendRequestCnt"] |
+| **etcd node: state**| etcd.stats["v2/stats/self:state"] |
+| **etcd node: expires**| etcd.stats["v2/stats/store:expireCount"] |
+| **etcd node: gets fail**| etcd.stats["v2/stats/store:getsFail"] |
+| **etcd node: gets success**| etcd.stats["v2/stats/store:getsSuccess"] |
+| **etcd node: watchers**| etcd.stats["v2/stats/store:watchers"] |
+| **etcd cluster: sets fail**| etcd.stats["v2/stats/store:setsFail"] |
+| **etcd cluster: sets success**| etcd.stats["v2/stats/store:setsSuccess"] |
+| **etcd cluster: update fail**| etcd.stats["v2/stats/store:updateFail"] |
+| **etcd cluster: update success**| etcd.stats["v2/stats/store:updateSuccess"] |
+| **etcd cluster: compare and delete fail**| etcd.stats["v2/stats/store:compareAndDeleteFail"] |
+| **etcd cluster: compare and delete success**| etcd.stats["v2/stats/store:compareAndDeleteSuccess"] |
+| **etcd cluster: compare and swap fail**| etcd.stats["v2/stats/store:compareAndSwapFail"] |
+| **etcd cluster: compare and swap success**| etcd.stats["v2/stats/store:compareAndSwapSuccess"] |
+| **etcd cluster: create fail**| etcd.stats["v2/stats/store:createFail"] |
+| **etcd cluster: create success**| etcd.stats["v2/stats/store:createSuccess"] |
+| **etcd cluster: delete fail**| etcd.stats["v2/stats/store:deleteFail"] |
+| **etcd cluster: delete success**| etcd.stats["v2/stats/store:deleteSuccess"] |
+| **ETCD MEMBERS**| etcd.member.discovery |
+| **etcd follower: {#MEMBER NAME} failed raft requests**| etcd.stats["v2/stats/leader:followers/{#ID}/counts/fail"] |
+| **etcd follower: {#MEMBER NAME} successful raft requests**| etcd.stats["v2/stats/leader:followers/{#ID}/counts/success"] |
+| **etcd follower: {#MEMBER NAME} latency to leader**| etcd.stats["v2/stats/leader:followers/{#ID}/latency/current"] | 
+| **The number of leader changes seen**| etcd.metrics[counter,etcd_server_leader_changes_seen_total] |
+| **The total number of failed proposals seen**| etcd.metrics[counter,etcd_server_proposals_failed_total] |
+| **Whether or not a leader exists. 1 is existence, 0 is not**| etcd.metrics[gauge,etcd_server_has_leader] |
+| **The total number of consensus proposals applied in last 5 minutes**| etcd.metrics[gauge,etcd_server_proposals_applied_total] |
+| **The total number of consensus proposals committed in last 5 minutes**| etcd.metrics[gauge,etcd_server_proposals_committed_total] |
+| **The current number of pending proposals to commit**| etcd.metrics[gauge,etcd_server_proposals_pending] |
+| **Maximum number of open file descriptors**| etcd.metrics[gauge,process_max_fds] |
+| **Number of open file descriptors**| etcd.metrics[gauge,process_open_fds] |
+| **etcd_disk_backend_commit_duration_seconds_count in last 5 minutes**| etcd.metrics[histogram,etcd_disk_backend_commit_duration_seconds_count] |
+| **etcd_disk_backend_commit_duration_seconds_sum in last 5 minutes**| etcd.metrics[histogram,etcd_disk_backend_commit_duration_seconds_sum] |
+| **The latency distributions of commit called by backend in last 5 minutes**| last("etcd.metrics[histogram,etcd_disk_backend_commit_duration_seconds_sum]",0)/last("etcd.metrics[histogram,etcd_disk_wal_fsync_duration_seconds_count]",0) |
+| **etcd_disk_wal_fsync_duration_seconds_count in last 5 minutes**| etcd.metrics[histogram,etcd_disk_wal_fsync_duration_seconds_count] |
+| **etcd_disk_wal_fsync_duration_seconds_sum in last 5 minutes**| etcd.metrics[histogram,etcd_disk_wal_fsync_duration_seconds_sum] |
+| **The latency distributions of fsync called by wal in last 5 minutes**| last("etcd.metrics[histogram,etcd_disk_wal_fsync_duration_seconds_sum]",0)/last("etcd.metrics[histogram,etcd_disk_wal_fsync_duration_seconds_count]",0) |
+
 
 
 ### Kubernetes apiserver/controller/scheduler
@@ -119,34 +134,34 @@ $ kubectl apply -f zabbix-agent-daemonset.yaml
 | **apiserver_request_count: error_rate (verb=PATCH)**| apiserver_request_error_rate[PATCH]|
 | **apiserver_request_count: error_rate (verb=POST)**| apiserver_request_error_rate[POST]|
 | **apiserver_request_count: error_rate (verb=PUT)**| apiserver_request_error_rate[PUT]|
-| **apiserver_request_count: verb=DELETE, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]|
-| **apiserver_request_count: verb=DELETE, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]|
-| **apiserver_request_count: verb=GET, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]|
-| **apiserver_request_count: verb=GET, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]|
-| **apiserver_request_count: verb=LIST, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]|
-| **apiserver_request_count: verb=POST, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]|
-| **apiserver_request_count: verb=PATCH, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]|
-| **apiserver_request_count: verb=PATCH, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]|
-| **apiserver_request_count: verb=POST, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]|
-| **apiserver_request_count: verb=POST, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]|
-| **apiserver_request_count: verb=PUT, metrics=error_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]|
-| **apiserver_request_count: verb=PUT, metrics=total_count**| metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]|
-| **apiserver_request_latencies: DELETE**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]|
-| **apiserver_request_latencies: GET**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]|
-| **apiserver_request_latencies: LIST**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]|
-| **apiserver_request_latencies: PATCH**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]|
-| **apiserver_request_latencies: POST**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]|
-| **apiserver_request_latencies: PUT**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]|
-| **apiserver_request_latencies: POST**| metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]|
-| **apiserver: healthz**| metrics_exporter[https://{HOST.IP}:443/healthz,healthz]|
-| **kube-scheduler: healthz**| metrics_exporter[http://{HOST.IP}:10251/healthz,healthz]|
-| **kube-scheduler: current leader**| metrics_exporter[https://{HOST.IP}:443,get_leader,kube-scheduler]|
-| **kube-controller-manager: healthz**| metrics_exporter[http://{HOST.IP}:10252/healthz,healthz]|
-| **kube-controller-manager: current leader**| metrics_exporter[https://{HOST.IP}:443,get_leader,kube-controller-manager]|
+| **apiserver_request_count: verb=DELETE, metrics=error_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]|
+| **apiserver_request_count: verb=DELETE, metrics=total_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]|
+| **apiserver_request_count: verb=GET, metrics=error_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]|
+| **apiserver_request_count: verb=GET, metrics=total_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]|
+| **apiserver_request_count: verb=LIST, metrics=error_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]|
+| **apiserver_request_count: verb=POST, metrics=total_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]|
+| **apiserver_request_count: verb=PATCH, metrics=error_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]|
+| **apiserver_request_count: verb=PATCH, metrics=total_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]|
+| **apiserver_request_count: verb=POST, metrics=error_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]|
+| **apiserver_request_count: verb=POST, metrics=total_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]|
+| **apiserver_request_count: verb=PUT, metrics=error_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]|
+| **apiserver_request_count: verb=PUT, metrics=total_count**| kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]|
+| **apiserver_request_latencies: DELETE**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]|
+| **apiserver_request_latencies: GET**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]|
+| **apiserver_request_latencies: LIST**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]|
+| **apiserver_request_latencies: PATCH**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]|
+| **apiserver_request_latencies: POST**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]|
+| **apiserver_request_latencies: PUT**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]|
+| **apiserver_request_latencies: POST**| kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]|
+| **apiserver: healthz**| kube.metrics[https://{HOST.IP}:443/healthz,healthz]|
+| **kube-scheduler: healthz**| kube.metrics[http://{HOST.IP}:10251/healthz,healthz]|
+| **kube-scheduler: current leader**| kube.metrics[https://{HOST.IP}:443,get_leader,kube-scheduler]|
+| **kube-controller-manager: healthz**| kube.metrics[http://{HOST.IP}:10252/healthz,healthz]|
+| **kube-controller-manager: current leader**| kube.metrics[https://{HOST.IP}:443,get_leader,kube-controller-manager]|
 
 
 ### Kubelet
 | Zabbix Item Name | Zabbix Item Key |
 | ------------ | ----------- |
-| **kubelet: healthz**| metrics_exporter[https://{HOST.IP}:10250/healthz,healthz]|
-| **KUBELET_RUNNING_POD_COUNT**| metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]|
+| **kubelet: healthz**| kube.metrics[https://{HOST.IP}:10250/healthz,healthz]|
+| **KUBELET_RUNNING_POD_COUNT**| kube.metrics[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]|

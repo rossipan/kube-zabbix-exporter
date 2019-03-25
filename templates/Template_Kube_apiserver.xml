@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2018-08-13T02:50:10Z</date>
+    <date>2019-03-25T06:09:05Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -36,7 +36,7 @@
             </applications>
             <items>
                 <item>
-                    <name>apiserver_request_count: error_rate (verb=DELETE)</name>
+                    <name>apiserver_request_count: error_rate (verb=DELETE) in last 5 minutes</name>
                     <type>15</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -59,7 +59,7 @@
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
                     <delay_flex/>
-                    <params>100*last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]&quot;,0)/(last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]&quot;,0)+ 0.000001 )</params>
+                    <params>100*last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]&quot;,0)/(last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]&quot;,0)+ 0.000001 )</params>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
                     <authtype>0</authtype>
@@ -79,7 +79,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: error_rate (verb=GET)</name>
+                    <name>apiserver_request_count: error_rate (verb=GET) in last 5 minutes</name>
                     <type>15</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -102,7 +102,7 @@
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
                     <delay_flex/>
-                    <params>100*last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]&quot;,0)/(last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]&quot;,0)+ 0.000001 )</params>
+                    <params>100*last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]&quot;,0)/(last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]&quot;,0)+ 0.000001 )</params>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
                     <authtype>0</authtype>
@@ -122,7 +122,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: error_rate (verb=LIST)</name>
+                    <name>apiserver_request_count: error_rate (verb=LIST) in last 5 minutes</name>
                     <type>15</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -145,7 +145,7 @@
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
                     <delay_flex/>
-                    <params>100*last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]&quot;,0)/(last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]&quot;,0)+ 0.000001 )</params>
+                    <params>100*last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]&quot;,0)/(last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]&quot;,0)+ 0.000001 )</params>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
                     <authtype>0</authtype>
@@ -165,7 +165,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: error_rate (verb=PATCH)</name>
+                    <name>apiserver_request_count: error_rate (verb=PATCH) in last 5 minutes</name>
                     <type>15</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -188,7 +188,7 @@
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
                     <delay_flex/>
-                    <params>100*last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]&quot;,0)/(last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]&quot;,0)+ 0.000001 )</params>
+                    <params>100*last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]&quot;,0)/(last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]&quot;,0)+ 0.000001 )</params>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
                     <authtype>0</authtype>
@@ -208,7 +208,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: error_rate (verb=POST)</name>
+                    <name>apiserver_request_count: error_rate (verb=POST) in last 5 minutes</name>
                     <type>15</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -231,7 +231,7 @@
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
                     <delay_flex/>
-                    <params>100*last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]&quot;,0)/(last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]&quot;,0)+ 0.000001 )</params>
+                    <params>100*last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]&quot;,0)/(last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]&quot;,0)+ 0.000001 )</params>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
                     <authtype>0</authtype>
@@ -251,7 +251,7 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: error_rate (verb=PUT)</name>
+                    <name>apiserver_request_count: error_rate (verb=PUT) in last 5 minutes</name>
                     <type>15</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -274,7 +274,7 @@
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
                     <delay_flex/>
-                    <params>100*last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]&quot;,0)/(last(&quot;metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]&quot;,0)+ 0.000001 )</params>
+                    <params>100*last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]&quot;,0)/(last(&quot;kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]&quot;,0)+ 0.000001 )</params>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
                     <authtype>0</authtype>
@@ -299,7 +299,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[http://{HOST.IP}:10251/healthz,healthz]</key>
+                    <key>kube.metrics[http://{HOST.IP}:10251/healthz,healthz]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>0</trends>
@@ -342,7 +342,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[http://{HOST.IP}:10252/healthz,healthz]</key>
+                    <key>kube.metrics[http://{HOST.IP}:10252/healthz,healthz]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>0</trends>
@@ -385,7 +385,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443,get_leader,kube-controller-manager]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443,get_leader,kube-controller-manager]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>0</trends>
@@ -428,7 +428,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443,get_leader,kube-scheduler]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443,get_leader,kube-scheduler]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>0</trends>
@@ -471,7 +471,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/healthz,healthz]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/healthz,healthz]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>0</trends>
@@ -509,12 +509,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=DELETE, metrics=error_count</name>
+                    <name>apiserver_request_count: verb=DELETE, metrics=error_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -552,12 +552,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=DELETE, metrics=total_count</name>
+                    <name>apiserver_request_count: verb=DELETE, metrics=total_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:total_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -595,12 +595,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=GET, metrics=error_count</name>
+                    <name>apiserver_request_count: verb=GET, metrics=error_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -638,12 +638,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=GET, metrics=total_count</name>
+                    <name>apiserver_request_count: verb=GET, metrics=total_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:total_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -681,12 +681,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=LIST, metrics=error_count</name>
+                    <name>apiserver_request_count: verb=LIST, metrics=error_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -724,12 +724,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=POST, metrics=total_count</name>
+                    <name>apiserver_request_count: verb=POST, metrics=total_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:total_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -767,12 +767,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=PATCH, metrics=error_count</name>
+                    <name>apiserver_request_count: verb=PATCH, metrics=error_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -810,12 +810,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=PATCH, metrics=total_count</name>
+                    <name>apiserver_request_count: verb=PATCH, metrics=total_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:total_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -853,12 +853,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=POST, metrics=error_count</name>
+                    <name>apiserver_request_count: verb=POST, metrics=error_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -896,12 +896,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=POST, metrics=total_count</name>
+                    <name>apiserver_request_count: verb=POST, metrics=total_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:total_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -939,12 +939,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=PUT, metrics=error_count</name>
+                    <name>apiserver_request_count: verb=PUT, metrics=error_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -982,12 +982,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>apiserver_request_count: verb=PUT, metrics=total_count</name>
+                    <name>apiserver_request_count: verb=PUT, metrics=total_count in last 5 minutes</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:total_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -1030,14 +1030,14 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>ms</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -1073,14 +1073,14 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>ms</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -1116,14 +1116,14 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>ms</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -1159,14 +1159,14 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>ms</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -1202,14 +1202,14 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>ms</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -1245,14 +1245,14 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]</key>
+                    <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>ms</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -1291,7 +1291,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[https://{HOST.IP}:443/healthz,healthz].str(ok)}=0</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[https://{HOST.IP}:443/healthz,healthz].str(ok)}=0</expression>
             <name>API server health check has failed</name>
             <url/>
             <status>0</status>
@@ -1301,7 +1301,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[https://{HOST.IP}:443/healthz,healthz].nodata(5m)}=1</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[https://{HOST.IP}:443/healthz,healthz].nodata(5m)}=1</expression>
             <name>API server health check was unreachable, No Data Received</name>
             <url/>
             <status>0</status>
@@ -1371,7 +1371,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[http://{HOST.IP}:10252/healthz,healthz].str(ok)}=0</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[http://{HOST.IP}:10252/healthz,healthz].str(ok)}=0</expression>
             <name>kube-controller-manager health check has failed</name>
             <url/>
             <status>0</status>
@@ -1381,7 +1381,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[http://{HOST.IP}:10252/healthz,healthz].nodata(5m)}=1</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[http://{HOST.IP}:10252/healthz,healthz].nodata(5m)}=1</expression>
             <name>kube-controller-manager health check was unreachable, No Data Received</name>
             <url/>
             <status>0</status>
@@ -1391,7 +1391,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[https://{HOST.IP}:443,get_leader,kube-controller-manager].diff(0)}&gt;0</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[https://{HOST.IP}:443,get_leader,kube-controller-manager].diff(0)}&gt;0</expression>
             <name>kube-controller leader was changed</name>
             <url/>
             <status>0</status>
@@ -1401,7 +1401,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[http://{HOST.IP}:10251/healthz,healthz].str(ok)}=0</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[http://{HOST.IP}:10251/healthz,healthz].str(ok)}=0</expression>
             <name>kube-scheduler health check has failed</name>
             <url/>
             <status>0</status>
@@ -1411,7 +1411,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[http://{HOST.IP}:10251/healthz,healthz].nodata(5m)}=1</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[http://{HOST.IP}:10251/healthz,healthz].nodata(5m)}=1</expression>
             <name>kube-scheduler health check was unreachable, No Data Received</name>
             <url/>
             <status>0</status>
@@ -1421,7 +1421,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kube_apiserver:metrics_exporter[https://{HOST.IP}:443,get_leader,kube-scheduler].diff(0)}&gt;0</expression>
+            <expression>{Template_Kube_apiserver:kube.metrics[https://{HOST.IP}:443,get_leader,kube-scheduler].diff(0)}&gt;0</expression>
             <name>kube-scheduler leader was changed</name>
             <url/>
             <status>0</status>
@@ -1459,7 +1459,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,DELETE:error_count]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1471,7 +1471,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,GET:error_count]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1483,7 +1483,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,LIST:error_count]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1495,7 +1495,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PATCH:error_count]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1507,7 +1507,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,POST:error_count]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1519,7 +1519,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,counter,apiserver_request_count,PUT:error_count]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1643,7 +1643,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,GET]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1655,7 +1655,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,DELETE]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1667,7 +1667,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,LIST]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1679,7 +1679,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PATCH]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1691,7 +1691,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,PUT]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1703,7 +1703,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kube_apiserver</host>
-                        <key>metrics_exporter[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]</key>
+                        <key>kube.metrics[https://{HOST.IP}:443/metrics,summary,apiserver_request_latencies_summary,POST]</key>
                     </item>
                 </graph_item>
             </graph_items>

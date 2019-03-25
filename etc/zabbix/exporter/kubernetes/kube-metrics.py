@@ -4,20 +4,20 @@ Zabbix monitoring template for kube-apiserver node metrics.
 for example:
 
 fetch apiserver metrics    
-$ ./metrics-exporter.py -u https://10.0.0.222:443/healthz -t healthz
-$ ./metrics-exporter.py -u https://10.0.0.222:443/metrics -t counter -q apiserver_request_count -v LIST:total_count
-$ ./metrics-exporter.py -u https://10.0.0.222:443/metrics -t counter -q apiserver_request_count -v LIST:error_count
-$ ./metrics-exporter.py -u https://10.0.0.222:443/metrics -t summary -q apiserver_request_latencies_summary -v LIST
+$ ./kube-metrics.py -u https://10.0.0.222:443/healthz -t healthz
+$ ./kube-metrics.py -u https://10.0.0.222:443/metrics -t counter -q apiserver_request_count -v LIST:total_count
+$ ./kube-metrics.py -u https://10.0.0.222:443/metrics -t counter -q apiserver_request_count -v LIST:error_count
+$ ./kube-metrics.py -u https://10.0.0.222:443/metrics -t summary -q apiserver_request_latencies_summary -v LIST
 
 fetch kubelet metrics 
-$ ./metrics-exporter.py -u https://10.0.0.222:10250/metrics -t gauge -q kubelet_running_pod_count
-$ ./metrics-exporter.py -u https://10.0.0.222:10250/healthz -t healthz
+$ ./kube-metrics.py -u https://10.0.0.222:10250/metrics -t gauge -q kubelet_running_pod_count
+$ ./kube-metrics.py -u https://10.0.0.222:10250/healthz -t healthz
 
 fetch leader
-$ ./metrics-exporter.py -u https://10.0.0.222:443 -t get_leader -q kube-controller-manager
-$ ./metrics-exporter.py -u https://10.0.0.222:443 -t get_leader -q kube-scheduler
+$ ./kube-metrics.py -u https://10.0.0.222:443 -t get_leader -q kube-controller-manager
+$ ./kube-metrics.py -u https://10.0.0.222:443 -t get_leader -q kube-scheduler
 """
-from parser import text_string_to_metric_families
+
 import sys, os, time
 import requests
 import re
@@ -30,6 +30,10 @@ try:
     from urllib.parse import urlparse
 except ImportError:
     from urlparse import urlparse
+
+# this will let the script to import parent modules when execute directly
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+from prometheus_client.parser import text_string_to_metric_families
 
 stats_cache_file_tmpl = '/tmp/zbx_metrics_exporter_stats_{router}.txt'
 
@@ -55,7 +59,7 @@ def connect(router, timeout=60):
         # get the service account token
         token_file = '/var/run/secrets/kubernetes.io/serviceaccount/token'
         with open(token_file, 'r') as t:
-            token = 'Bearer ' + t.read()
+            token = 'Bearer ' + t.read().replace('\n', '')
 
         try:
             requests.packages.urllib3.disable_warnings()
@@ -230,6 +234,15 @@ def main():
         result = gauge(router=url, query_label_name=query_label_name)
 
     elif query_type == 'counter':
+        #Make counter metric name not have _total internally.
+        #With OpenMetrics the _total is a suffix on a sample
+        #for a counter, so the convention that Counters should end
+        #in total is now enforced. If an existing counter is
+        #missing the _total, it'll now appear on the /metrics.
+        #https://github.com/prometheus/client_python/commit/a4dd93bcc6a0422e10cfa585048d1813909c6786
+        if not query_label_name.endswith('_total'):
+            query_label_name = query_label_name + '_total'
+
         result = counter(router=url, query_label_name=query_label_name, query_label_verb=query_label_verb)
 
     elif query_type == 'summary':

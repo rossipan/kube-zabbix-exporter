@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2018-08-13T02:48:55Z</date>
+    <date>2019-03-25T06:08:40Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -32,7 +32,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:10250/healthz,healthz]</key>
+                    <key>kube.metrics[https://{HOST.IP}:10250/healthz,healthz]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>0</trends>
@@ -75,7 +75,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]</key>
+                    <key>kube.metrics[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]</key>
                     <delay>300</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -121,7 +121,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template_Kubelet:metrics_exporter[https://{HOST.IP}:10250/healthz,healthz].str(ok)}=0</expression>
+            <expression>{Template_Kubelet:kube.metrics[https://{HOST.IP}:10250/healthz,healthz].str(ok)}=0</expression>
             <name>kubelet health check has failed</name>
             <url/>
             <status>0</status>
@@ -131,7 +131,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kubelet:metrics_exporter[https://{HOST.IP}:10250/healthz,healthz].nodata(5m)}=1</expression>
+            <expression>{Template_Kubelet:kube.metrics[https://{HOST.IP}:10250/healthz,healthz].nodata(5m)}=1</expression>
             <name>kubelet health check was unreachable, No Data Received</name>
             <url/>
             <status>0</status>
@@ -141,7 +141,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template_Kubelet:metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count].last()}&gt;100</expression>
+            <expression>{Template_Kubelet:kube.metrics[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count].last()}&gt;100</expression>
             <name>Kubelet is running {ITEM.LASTVALUE} pods, close to the limit of 110.</name>
             <url/>
             <status>0</status>
@@ -179,7 +179,7 @@
                     <type>0</type>
                     <item>
                         <host>Template_Kubelet</host>
-                        <key>metrics_exporter[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]</key>
+                        <key>kube.metrics[https://{HOST.IP}:10250/metrics,gauge,kubelet_running_pod_count]</key>
                     </item>
                 </graph_item>
             </graph_items>

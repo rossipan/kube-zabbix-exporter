@@ -18,7 +18,6 @@ import StringIO
 import argparse
 import ConfigParser
 from base64 import b16encode
-from optparse import OptionParser
 from sys import exit, stderr
 
 stats_cache_file_tmpl = '/tmp/zbx_etcd_stats_{type}_{url}.txt'
