@@ -51,7 +51,7 @@ docker run -d -p 10050:10050 -c 1024 -m 64M --memory-swap=-1 \
     --restart=always \
     --env ZBX_SERVER_HOST="<ZBX_SERVER_HOST>" \
     --env ZBX_METADATA="<ZBX_METADATA>" \
-    --name zabbix-coreos rossipan/docker-zabbix-coreos/3.0.17
+    --name zabbix-coreos rossipan/kube-zabbix-exporter
 ```
 
 for example:
@@ -65,7 +65,7 @@ docker run -d -p 10050:10050 -c 1024 -m 64M --memory-swap=-1 \
     --restart=always \
     --env ZBX_SERVER_HOST="10.0.0.100" \
     --env ZBX_METADATA="prod-etcd" \
-    --name zabbix-coreos rossipan/docker-zabbix-coreos/3.0.17
+    --name zabbix-coreos rossipan/kube-zabbix-exporter
 ```
 
 deploy the zabbix agent with daemonset:
